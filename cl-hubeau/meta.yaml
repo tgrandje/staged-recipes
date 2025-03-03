@@ -16,11 +16,11 @@ build:
 
 requirements:
   host:
-    - python >=3.9,<4.0
+    - python {{ python_min }}
     - poetry-core
     - pip
   run:
-    - python >=3.9.0,<4.0.0
+    - python >={{ python_min }}
     - requests-cache >=1.2.1,<2.0.0
     - platformdirs >=4.2.2,<5.0.0
     - diskcache >=5.6.3,<6.0.0
@@ -39,13 +39,14 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
   home: https://tgrandje.github.io/cl-hubeau
   summary: Hubeau client to collect data from the different APIs
   license: GPL-3.0-or-later
-  license_file: PLEASE_ADD_LICENSE_FILE
+  license_file: LICENSE.md
 
 extra:
   recipe-maintainers:
