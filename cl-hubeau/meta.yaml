@@ -1,0 +1,52 @@
+{% set name = "cl-hubeau" %}
+{% set version = "0.8.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cl_hubeau-{{ version }}.tar.gz
+  sha256: 7825abb89ef6cb73f3c774b0a2177b24689201139a1001d1fe443d2b60a6bc8a
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python >=3.9,<4.0
+    - poetry-core
+    - pip
+  run:
+    - python >=3.9.0,<4.0.0
+    - requests-cache >=1.2.1,<2.0.0
+    - platformdirs >=4.2.2,<5.0.0
+    - diskcache >=5.6.3,<6.0.0
+    - importlib-metadata >=8.2.0,<9.0.0
+    - pebble >=5.0.7,<6.0.0
+    - pandas >=2.2.2,<3.0.0
+    - tqdm >=4.66.4,<5.0.0
+    - geopandas >=1.0.1,<2.0.0
+    - requests-ratelimiter >=0.7.0,<0.8.0
+    - pynsee >=0.2.0,<0.3.0
+    - deprecation >=2.1.0,<3.0.0
+
+test:
+  imports:
+    - cl_hubeau
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://tgrandje.github.io/cl-hubeau
+  summary: Hubeau client to collect data from the different APIs
+  license: GPL-3.0-or-later
+  license_file: PLEASE_ADD_LICENSE_FILE
+
+extra:
+  recipe-maintainers:
+    - tgrandje
